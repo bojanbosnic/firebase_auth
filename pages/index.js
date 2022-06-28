@@ -1,48 +1,55 @@
-import { useState, useRef } from "react";
-import { signup, useAuth, logout, signin } from "../firebase";
+// import { useState, useRef } from "react";
+// import { signup, useAuth, logout, signin } from "../firebase";
 import styles from "../styles/Home.module.css";
-import HomePage from "./HomePage";
+
 
 export default function Home() {
-  const currentUser = useAuth();
-  const emailRef = useRef();
-  const passwordRef = useRef();
-  console.log(currentUser);
-  const handleSignUp = async (event) => {
-    try {
-      await signup(emailRef.current.value, passwordRef.current.value);
-    } catch (error) {
-      alert(error);
-    }
-  };
-  const handleSignIn = async (event) => {
-    try {
-      await signin(emailRef.current.value, passwordRef.current.value);
-    } catch (error) {
-      alert(error);
-    }
-  };
+//   const [userEmail, setUserEmail] = useState('')
+//   const [userPassword, setUserPassword] = useState('')
+//   const currentUser = useAuth();
 
- const handleLogOut = async () => {
-    try {
-      await logout();
-    } catch (error) {
-      alert(error);
-    }
-  };
+
+
+//   const handleSignUp = async (event) => {
+//     try {
+//       await signup(userEmail, userPassword);
+//     } catch (error) {
+//       alert(error);
+//     }
+//   };
+//   const handleSignIn = async (event) => {
+//     try {
+//       await signin(userEmail, userPassword);
+//     } catch (error) {
+//       alert(error);
+//     }
+//   };
+
+//  const handleLogOut = async () => {
+//     try {
+//       await logout();
+//     } catch (error) {
+//       alert(error);
+//     }
+//   };
 
   return (
     <div className={styles.container}>
-      <div>
-        {currentUser? "hello world from page" : "nije"}
+      <h1>Hello from home page</h1>
+      {/* <div>
+   
         <input
-          ref={emailRef}
+          value={userEmail}
+          onChange={(e) =>
+            currentUser ? setUserEmail(null) : setUserEmail(e.target.value)
+          }
           style={{ marginRight: "1rem", padding: "0.5rem 1rem" }}
           type="email"
           placeholder="Email"
         />
         <input
-          ref={passwordRef}
+          value={userPassword}
+          onChange={(e) => setUserPassword(e.target.value)}
           style={{ marginRight: "1rem", padding: "0.5rem 1rem" }}
           type="password"
           placeholder="Password"
@@ -50,7 +57,7 @@ export default function Home() {
       </div>
       <button onClick={handleSignUp}>Sign Up</button>
       <button onClick={handleSignIn}>Log In</button>
-      <button onClick={handleLogOut}>Log Out</button>
+   <button onClick={handleLogOut}>Log Out</button>  */}
     </div>
   );
 }

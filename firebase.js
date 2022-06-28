@@ -1,12 +1,6 @@
 import { initializeApp } from "firebase/app";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  onAuthStateChanged,
-  signOut,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
-import { useEffect, useState } from "react";
+import {getAuth} from 'firebase/auth'
+
 const firebaseConfig = {
   apiKey: "AIzaSyBxFfLzhuyy-3gBQwQ78hws1BTUAy6eZ_I",
   authDomain: "first-f7dcd.firebaseapp.com",
@@ -17,25 +11,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const auth = getAuth();
 
-export const signup = (email, password) => {
-  return createUserWithEmailAndPassword(auth, email, password);
-};
 
-export const signin = (email, password) => {
-  return signInWithEmailAndPassword(auth, email, password);
-};
+export const auth = getAuth();
 
-export const logout=()=>{
-  return signOut(auth);
-}
-
-export const useAuth = () => {
-  const [currentUser, setCurrentUser] = useState();
-  useEffect(() => {
-    const unsub = onAuthStateChanged(auth, (user) => setCurrentUser(user));
-    return unsub;
-  }, []);
-  return currentUser;
-};
