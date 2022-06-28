@@ -3,3 +3,30 @@
   margin-top: 5rem;
 }
 
+.formInput {
+  margin: 1.5rem 0;
+  padding: 20px 10px;
+  border-radius: 10px;
+  border: 1px solid grey;
+}
+
+.inputMain {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background-color: blue;
+  margin: 0 20rem;
+  padding: 3rem;
+  border-radius: 20px;
+}
+
+.navbar{
+  display: flex;
+    background: blue;
+    margin: 0;
+    list-style: none;
+    padding: 15px;
+    color: white;
+}
+
+
