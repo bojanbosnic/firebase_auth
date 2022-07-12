@@ -1,10 +1,11 @@
 .container {
   padding: 0 2rem;
   margin-top: 5rem;
+  
 }
 
 .formInput {
-  margin: 1.5rem 0;
+  margin: 1rem 0;
   padding: 20px 10px;
   border-radius: 10px;
   border: 1px solid grey;
@@ -17,16 +18,16 @@
   background-color: blue;
   margin: 0 20rem;
   padding: 3rem;
+  color: white;
   border-radius: 20px;
 }
 
-.navbar{
+.navbar {
   display: flex;
-    background: blue;
-    margin: 0;
-    list-style: none;
-    padding: 15px;
-    color: white;
+  background: blue;
+  margin: 0;
+  list-style: none;
+  padding: 15px;
+  color: white;
+  justify-content: space-around;
 }
-
-

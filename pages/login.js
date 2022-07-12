@@ -1,28 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useAuth } from "../context/AuthContext";
 import styles from "../styles/Home.module.css";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const login = () => {
-  const [userEmail, setUserEmail] = useState();
-  const [userPassword, setUserPassword] = useState();
-const router= useRouter();
-  const { signin } = useAuth();
+  const [userEmail, setUserEmail] = useState("");
+  const [userPassword, setUserPassword] = useState("");
+  const router = useRouter();
+  const { signin, currentUser } = useAuth();
+
+
 
   const handleSignIn = async (event) => {
-    event.preventDefault();
     try {
       await signin(userEmail, userPassword);
-      router.push("/dashboard");
+      setUserEmail('')
+      setUserPassword("")
+      router.push("/example")
     } catch (error) {
       alert(error);
     }
   };
-
+  useEffect(() => {
+    if (currentUser) {
+      router.push("/example");
+    }
+  }, [currentUser]);
   return (
     <div>
       <div className={styles.container}>
         <div className={styles.inputMain}>
+          <p>{currentUser ? "KORISNIK JE PRIJAVLJEN" : "nista"}</p>
+          <label>Email</label>
           <input
             className={styles.formInput}
             value={userEmail}
@@ -30,6 +40,7 @@ const router= useRouter();
             type="email"
             placeholder="Email"
           />
+          <label>Password</label>
           <input
             className={styles.formInput}
             value={userPassword}
