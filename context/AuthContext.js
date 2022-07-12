@@ -24,13 +24,22 @@ const logout = () => {
   return signOut(auth);
 };
 
+
+
 export const AuthContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState();
   const [isLogedIn, setIsLogedIn] = useState(true);
-console.log(currentUser)
+  const [color, setColor] = useState({
+    primary: 'white',
+    secondary: 'black'
+  })
+  console.log(currentUser)
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
+      if(user?.accessToken){
+      localStorage.setItem("Token", user.accessToken)
+      }
     });
     setIsLogedIn(false);
     console.log(currentUser);
@@ -41,9 +50,32 @@ console.log(currentUser)
     return <LoadingSpinner />;
   }
   //   return currentUser;
+
+  const toggleLightMode = () => {
+    if (color.primary === 'white') {
+
+      setColor({
+        primary: 'black',
+        secondary: 'white'
+      })
+      return
+    }
+    
+    setColor({
+      primary: 'white',
+      secondary: 'black'
+    })
+
+  }
+
+
+  const value = {
+    currentUser, logout, signin, signup, isLogedIn, color, setColor,toggleLightMode
+  }
+
   return (
     <AuthContext.Provider
-      value={{ currentUser, logout, signin, signup, isLogedIn }}
+      value={value}
     >
       {children}
     </AuthContext.Provider>

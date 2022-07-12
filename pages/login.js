@@ -14,19 +14,29 @@ const login = () => {
 
   const handleSignIn = async (event) => {
     try {
-      await signin(userEmail, userPassword);
+    await signin(userEmail, userPassword);
       setUserEmail('')
       setUserPassword("")
+    
       router.push("/example")
     } catch (error) {
       alert(error);
     }
   };
-  useEffect(() => {
-    if (currentUser) {
-      router.push("/example");
-    }
-  }, [currentUser]);
+
+  // useEffect(() => {
+  //   if (currentUser) {
+  //     router.push("/example");
+  //   }
+  // }, [currentUser]);
+
+  const token = localStorage.getItem('token')
+  
+
+  
+  if(localStorage.getItem('Token')){ 
+    router.push("/example");
+  }
   return (
     <div>
       <div className={styles.container}>

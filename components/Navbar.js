@@ -4,13 +4,14 @@ import React from "react";
 import styles from "../styles/Home.module.css";
 import { useAuth } from "../context/AuthContext";
 
-const Navbar = () => {
-  const { currentUser, logout } = useAuth();
+const Navbar = ({loggedIn}) => {
+  const {  logout, color, toggleLightMode } = useAuth();
   const router = useRouter();
-  console.log(currentUser);
+  
 
   const handleLogOut = async () => {
     try {
+      localStorage.removeItem('Token')
       await logout();
       router.push('/login')
     } catch (error) {
@@ -20,8 +21,10 @@ const Navbar = () => {
   return (
     <div>
       <nav>
-        <ul className={styles.navbar}>
-          {currentUser ? (
+        <ul style={{backgroundColor: color.secondary}} className={styles.navbar}>
+        {/* <ul  className={styles.navbar}> */}
+  
+          {loggedIn ? (
             <>
               <li>
                 <Link href="/example">
@@ -41,6 +44,7 @@ const Navbar = () => {
                 Log Out
               </button>
             </>
+
           ) : (
             <>
               <li style={{ marginRight: "1rem" }}>
@@ -55,6 +59,9 @@ const Navbar = () => {
               </li>
             </>
           )}
+          <li>
+            <button onClick={() => toggleLightMode()}>Sunce/mjesec</button>
+          </li>
         </ul>
       </nav>
     
